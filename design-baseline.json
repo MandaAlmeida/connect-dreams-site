@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "date": "2026-10-26",
+  "source": "React app (Vite + React 18 + TS) in src/, replacing Connect Dreams.html",
+  "scope": ["#inicio", "#projetos", "#servicos", "#processo", "#sobre", "#sobre-mim", "#contato", "footer", "#/projetos/<id> dialog"],
+  "pass": "static + live (headless Chromium at 360/768/1440, light and dark; behavior script)",
+  "design_score": "A",
+  "slop_score": "A",
+  "categories": {
+    "identity": "A", "hierarchy": "A", "typography": "A", "color": "A",
+    "components": "A", "navigation": "A", "responsive": "A",
+    "accessibility": "A", "motion": "A", "performance": "A"
+  },
+  "delta_from_v1": {
+    "design_score": "A -> A",
+    "slop_score": "C -> A",
+    "accessibility": "D -> A",
+    "performance": "B -> A",
+    "tells_removed": [27, 35, 41, 19],
+    "tells_remaining_note": "#19 only in <title>/meta description (SEO text, left unchanged on purpose)",
+    "metrics": {
+      "inline_style_attrs": "251 -> 2",
+      "distinct_hex_outside_tokens": "53 -> 0",
+      "em_dashes_in_visible_copy": "47 -> 0 (2 left in <title>/meta)",
+      "js_payload": "340KB self-unpacking bundle -> 191KB (61KB gzip) + 36KB CSS"
+    }
+  },
+  "tells": [],
+  "findings": [
+    { "id": "FINDING-001", "impact": "high", "category": "accessibility", "summary": "Card clickable by mouse only", "status": "fixed", "note": "single <a href> per card, ::after stretches it" },
+    { "id": "FINDING-002", "impact": "high", "category": "accessibility", "summary": "Dialog without focus management", "status": "fixed", "note": "native <dialog>.showModal(); focus verified inside, returns to trigger" },
+    { "id": "FINDING-003", "impact": "medium", "category": "accessibility", "summary": "Filters misuse role=tab", "status": "fixed", "note": "toggle buttons with aria-pressed in role=group" },
+    { "id": "FINDING-004", "impact": "medium", "category": "accessibility", "summary": "No skip link", "status": "fixed" },
+    { "id": "FINDING-005", "impact": "medium", "category": "navigation", "summary": "Project details without URL", "status": "fixed", "note": "#/projetos/<id>; Back closes; deep link opens; filter in ?categoria=" },
+    { "id": "FINDING-006", "impact": "medium", "category": "responsive", "summary": "Nav switched by JS width", "status": "fixed", "note": "CSS media query at 960px" },
+    { "id": "FINDING-007", "impact": "medium", "category": "components", "summary": "251 inline styles", "status": "fixed" },
+    { "id": "FINDING-008", "impact": "medium", "category": "typography", "summary": "19 px font sizes, no scale", "status": "fixed", "note": "type tokens; a few 11-13px literals remain inside the terminal/cover illustrations" },
+    { "id": "FINDING-009", "impact": "medium", "category": "color", "summary": "No dark mode", "status": "fixed" },
+    { "id": "FINDING-010", "impact": "polish", "category": "color", "summary": "Stock Tailwind blue accent", "status": "fixed", "note": "vermilion #c8331a / #ff6b4a (RISK in WEB-DESIGN.md)" },
+    { "id": "FINDING-011", "impact": "polish", "category": "motion", "summary": "Fade-up on every section", "status": "fixed" },
+    { "id": "FINDING-012", "impact": "medium", "category": "performance", "summary": "Config hints visible to visitors", "status": "fixed", "note": "gated by CONFIG.showDemoLabels (currently true, as before)" },
+    { "id": "FINDING-013", "impact": "medium", "category": "performance", "summary": "Em-dashes in copy", "status": "fixed", "note": "<title> and meta description untouched (SEO)" },
+    { "id": "FINDING-014", "impact": "medium", "category": "performance", "summary": "Self-unpacking bundle", "status": "fixed", "note": "still client-rendered; prerender is a possible next step" },
+    { "id": "FINDING-015", "impact": "polish", "category": "identity", "summary": "Forced grayscale imagery", "status": "fixed" }
+  ],
+  "unverified": ["200% zoom", "screen reader pass", "real touch devices", "Lighthouse / CWV numbers"]
+}

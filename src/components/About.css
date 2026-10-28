@@ -1,0 +1,23 @@
+.about {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
+  gap: var(--space-12) clamp(40px, 6vw, 96px);
+  align-items: start;
+}
+.about__intro { position: sticky; top: calc(var(--header-h) + var(--space-8)); }
+@media (max-width: 879px) { .about__intro { position: static; } }
+.about__title { font-size: clamp(2rem, 1.4rem + 2vw, 3rem); line-height: 1.06; letter-spacing: -0.035em; }
+.about__lede { max-width: 48ch; margin-top: var(--space-6); font-size: var(--text-md); line-height: 1.65; color: var(--text-muted); }
+
+.about__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--space-3); }
+.about__item {
+  padding: var(--space-6);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  transition: border-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out);
+}
+@media (hover: hover) { .about__item:hover { border-color: transparent; box-shadow: var(--shadow-2); } }
+.about__item-head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) 10px; margin-bottom: var(--space-3); }
+.about__item h3 { font-size: var(--text-md); letter-spacing: -0.015em; }
+.about__item p { font-size: 0.9375rem; line-height: 1.6; color: var(--text-muted); }

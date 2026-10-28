@@ -1,0 +1,58 @@
+.process-head { max-width: 760px; margin-bottom: clamp(40px, 5vw, 64px); }
+
+.timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-4);
+  isolation: isolate;
+}
+/* Connector line running through the nodes */
+.timeline::before {
+  content: ""; position: absolute; z-index: -1;
+  left: 28px; right: 28px; top: 27px; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--divider) 0 8px, transparent 8px 14px);
+}
+.timeline__item { display: flex; flex-direction: column; gap: var(--space-5); }
+
+.timeline__node {
+  display: grid; place-items: center;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--divider);
+  transition: background-color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out), transform var(--dur) var(--ease-spring);
+}
+.timeline__num { font-size: var(--text-sm); font-weight: var(--weight-display); font-variant-numeric: tabular-nums; }
+
+.timeline__card {
+  display: flex; flex-direction: column; flex: 1;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  transition: background-color var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out), transform var(--dur) var(--ease-out);
+}
+.timeline__icon { color: var(--accent-ink); }
+.timeline__title { margin: var(--space-4) 0 var(--space-2); font-size: 1.25rem; letter-spacing: -0.02em; }
+.timeline__text { flex: 1; font-size: 0.9375rem; line-height: 1.6; color: var(--text-muted); }
+.timeline__output {
+  margin-top: var(--space-4); padding-top: var(--space-3);
+  border-top: 1px solid var(--divider);
+  font-size: 0.8125rem; line-height: 1.5;
+}
+.timeline__output .label { display: block; margin-bottom: var(--space-1); font-size: 11px; }
+
+@media (hover: hover) {
+  .timeline__item:hover .timeline__node { background: var(--accent); border-color: var(--accent); color: var(--accent-contrast); transform: scale(1.1); }
+  .timeline__item:hover .timeline__card { background: var(--card); box-shadow: var(--shadow-2); transform: translateY(-4px); }
+}
+
+/* Vertical timeline on narrow screens */
+@media (max-width: 1023px) {
+  .timeline { grid-template-columns: 1fr; gap: var(--space-4); }
+  .timeline::before {
+    left: 27px; right: auto; top: 28px; bottom: 28px; width: 2px; height: auto;
+    background: repeating-linear-gradient(180deg, var(--divider) 0 8px, transparent 8px 14px);
+  }
+  .timeline__item { flex-direction: row; align-items: flex-start; }
+  .timeline__node { flex: none; }
+}
