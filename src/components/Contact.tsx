@@ -87,9 +87,12 @@ export function Contact({ form }: { form: Form }) {
         </div>
 
         <form className="contact-form" noValidate onSubmit={submit} aria-describedby="form-status">
-          {/* Honeypot: hidden from people, filled by bots. */}
-          <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp"
-            value={v.website} onChange={(e) => setField('website', e.target.value)} />
+          {/* Honeypot: hidden from people, filled by bots. Non-semantic name + display:none so browser
+              autofill and password managers leave it empty (a field named "website" got autofilled). */}
+          <div className="hp" aria-hidden="true">
+            <input type="text" name="cd_extra_ref" tabIndex={-1} autoComplete="off"
+              value={v.website} onChange={(e) => setField('website', e.target.value)} />
+          </div>
 
           <div className="field">
             <label htmlFor="f-name">Nome <span aria-hidden="true">*</span></label>

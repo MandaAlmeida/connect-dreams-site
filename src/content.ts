@@ -510,11 +510,21 @@ export const NAV = [
 
 export const publishedProjects = PROJECTS.filter((p) => p.published !== false);
 export const enabledServices = SERVICES.filter((s) => s.enabled);
-export const projectTypes = [
-  ...CATEGORIES,
-  ...enabledServices
-    .map((s) => s.title)
-    .filter((t) => !(CATEGORIES as readonly string[]).includes(t)),
-  "Outro",
-];
+// Opções de "Tipo de projeto" no formulário: só os serviços ativos (enabled: true) + "Outro".
+export const projectTypes = [...enabledServices.map((s) => s.title), "Outro"];
+
+// "Vamos conversar" no detalhe de um projeto: categoria do projeto -> serviço equivalente.
+const CATEGORY_TO_SERVICE: Record<string, string> = {
+  "Aplicações web": "Sistemas web",
+  "Sistemas empresariais": "Plataformas personalizadas",
+  "Aplicativos mobile": "Aplicativos",
+  "APIs e back-end": "APIs e integrações",
+  "Automações e integrações": "Automação de processos",
+  "Inteligência artificial": "Integrações com IA",
+  "Projetos personalizados": "Plataformas personalizadas",
+};
+export const typeForCategory = (category: string) => {
+  const t = CATEGORY_TO_SERVICE[category];
+  return t && projectTypes.includes(t) ? t : "Outro";
+};
 export const pad = (n: number) => String(n).padStart(2, "0");

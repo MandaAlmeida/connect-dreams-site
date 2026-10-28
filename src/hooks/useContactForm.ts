@@ -69,6 +69,7 @@ export function useContactForm() {
     }
     if (values.website) {
       // Honeypot filled: pretend success, send nothing.
+      if (import.meta.env.DEV) console.warn('contact: campo anti-robô preenchido; mensagem descartada sem envio.');
       reset();
       setStatus('success');
       return;

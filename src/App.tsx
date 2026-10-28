@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { CATEGORIES, NAV, type Project } from './content';
+import { NAV, typeForCategory, type Project } from './content';
 import { useActiveSection } from './hooks/useActiveSection';
 import { useContactForm } from './hooks/useContactForm';
 import { useProjectRoute } from './hooks/useProjectRoute';
@@ -36,7 +36,7 @@ export function App() {
   );
   const talkAbout = useCallback(
     (p: Project) => {
-      setField('type', (CATEGORIES as readonly string[]).includes(p.category) ? p.category : 'Outro');
+      setField('type', typeForCategory(p.category));
       close('contato');
     },
     [setField, close],

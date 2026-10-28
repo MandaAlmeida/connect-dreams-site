@@ -87,7 +87,7 @@
   background: var(--card);
   box-shadow: var(--shadow-2);
 }
-.hp { position: absolute; left: -9999px; width: 1px; height: 1px; }
+.hp { display: none; }
 
 .field { display: flex; flex-direction: column; gap: 6px; min-width: 0; margin: 0; padding: 0; border: 0; }
 .field--full { grid-column: 1 / -1; }
